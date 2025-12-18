@@ -2,7 +2,11 @@ locals {
   network_profile_combined = local.is_automatic ? merge(
     local.network_profile_template,
     {
-      outboundType = var.network_profile.outbound_type
+      dnsServiceIP        = var.network_profile.dns_service_ip
+      outboundType        = var.network_profile.outbound_type
+      serviceCidr         = var.network_profile.service_cidr
+      serviceCidrs        = var.network_profile.service_cidrs
+      advancedNetworking  = local.advanced_networking
     }
     ) : merge(
     local.network_profile_template,
